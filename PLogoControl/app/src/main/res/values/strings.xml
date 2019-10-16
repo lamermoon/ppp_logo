@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">P++ Logo Control</string>
+    <string name="send_to_pi">Send To Pi</string>
+</resources>
