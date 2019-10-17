@@ -13,14 +13,14 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.util.Log;
 
-public class MessageThread extends Thread {
-    private final static String TAG="MessageThread";
-    private final static String MY_UUID ="00001101-0000-1000-8000-00805f9b34fb";
-    private BluetoothSocket mSocket=null;
+public class LogoConfigSaverThread extends Thread {
+    private final static String TAG = "LogoConfigSaverThread";
+    private final static String MY_UUID = "00001101-0000-1000-8000-00805f9b34fb";
+    private BluetoothSocket mSocket = null;
     private String mMessage;
 
 
-    public MessageThread(BluetoothDevice device, String message) {
+    public LogoConfigSaverThread(BluetoothDevice device, String message) {
         Log.d(TAG,"Trying to send message...");
         this.mMessage=message;
         try {
@@ -28,16 +28,18 @@ public class MessageThread extends Thread {
             mSocket = device.createRfcommSocketToServiceRecord(uuid);
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
     }
 
     private void manageConnectedSocket(BluetoothSocket socket) throws IOException {
         Log.d(TAG,"Connection successful");
-        OutputStream os=socket.getOutputStream();
+        OutputStream os = socket.getOutputStream();
         PrintStream sender = new PrintStream(os);
         sender.print(mMessage);
         Log.d(TAG,"Message sent");
-        InputStream is=socket.getInputStream();
+        InputStream is = socket.getInputStream();
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is));
         Log.d(TAG,"Received: " + reader.readLine());
