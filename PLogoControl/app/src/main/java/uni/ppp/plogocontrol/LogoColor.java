@@ -13,6 +13,29 @@ class LogoColor {
     private int g;
     private int b;
 
+    LogoColor() {
+        this.a = 0xFF;
+        this.r = 0xCF;
+        this.g = 0xA5;
+        this.b = 0x44;
+    }
+
+    LogoColor(int r, int g, int b) {
+        this(0xFF, r, g, b);
+    }
+
+    LogoColor(int a, int r, int g, int b) {
+        this.a = a;
+        this.r = r;
+        this.g = g;
+        this.b = b;
+    }
+
+    LogoColor(int argb) {
+        setARGB(argb);
+    }
+
+
     void setRGB(int rgb) {
         this.r = (rgb >> roff) & mask;
         this.g = (rgb >> goff) & mask;

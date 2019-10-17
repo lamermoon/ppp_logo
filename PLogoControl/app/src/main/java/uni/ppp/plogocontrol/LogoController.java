@@ -27,6 +27,20 @@ public class LogoController {
         }
     }
 
+    public void onNewConf(LogoConfigType t) {
+        LogoConfig conf;
+        switch (t) {
+            //case PULSING: conf = new LogoConfigPulsing(); break;
+            //case RANDOM: conf = new LogoConfigRandom(); break;
+            default: conf = new LogoConfigStatic(); break;
+        }
+        this.model.addConf(conf);
+    }
+
+    public void onClearConfs() {
+        this.model.clearConfs();
+    }
+
 
 
     // Bluetooth stuff to send config to RPi
@@ -53,9 +67,10 @@ public class LogoController {
     }
 
     public boolean saveConfig() {
-        if (logo_rpi == null)
+        if (logo_rpi == null || !mBluetoothAdapter.isEnabled())
             return false;
-        new LogoConfigSaverThread(logo_rpi, model.toString()).start();
+        String config_str = "Hallo RPi!"; //model.toString();
+        new LogoConfigSaverThread(logo_rpi, config_str).start();
         return true;
     }
 }
