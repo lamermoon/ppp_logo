@@ -22,7 +22,7 @@ public class LogoConfigSaverThread extends Thread {
 
     public LogoConfigSaverThread(BluetoothDevice device, String message) {
         Log.d(TAG,"Trying to send message...");
-        this.mMessage=message;
+        this.mMessage = message;
         try {
             UUID uuid = UUID.fromString(MY_UUID);
             mSocket = device.createRfcommSocketToServiceRecord(uuid);

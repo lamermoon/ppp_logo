@@ -47,7 +47,7 @@ public class LogoController {
     private void findRaspberry() {
         Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
         for (BluetoothDevice device : pairedDevices)
-            if(device.getName().equals("raspberrypi-0"))
+            if(device.getName().equals("ppplogo"))
                 this.logo_rpi = device;
     }
 
@@ -55,13 +55,13 @@ public class LogoController {
         Log.d(TAG, "Checking Bluetooth...");
         if (mBluetoothAdapter == null) {
             Log.d(TAG, "Device does not support Bluetooth");
-        } else{
+        } else {
             Log.d(TAG, "Bluetooth supported");
         }
         if (!mBluetoothAdapter.isEnabled()) {
             Log.d(TAG, "Bluetooth not enabled");
         }
-        else{
+        else {
             Log.d(TAG, "Bluetooth enabled");
         }
     }

@@ -28,5 +28,6 @@ public class MainActivity extends AppCompatActivity implements ColorPicker.OnCol
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.logo = new LogoController();
     }
 }
