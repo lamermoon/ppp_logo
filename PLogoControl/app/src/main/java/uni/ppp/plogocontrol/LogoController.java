@@ -18,6 +18,7 @@ public class LogoController {
 
     // Constructor
     public LogoController() {
+        this.model = new LogoModel();
         this.mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         initBluetooth();
@@ -46,9 +47,11 @@ public class LogoController {
     // Bluetooth stuff to send config to RPi
     private void findRaspberry() {
         Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
-        for (BluetoothDevice device : pairedDevices)
-            if(device.getName().equals("ppplogo"))
+        for (BluetoothDevice device : pairedDevices) {
+            Log.d(TAG, "Paired device: " + device.getName() + "(" + device.getAddress() + ")");
+            if (device.getName().equals("ppplogo"))
                 this.logo_rpi = device;
+        }
     }
 
     private void initBluetooth() {

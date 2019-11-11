@@ -2,8 +2,6 @@ package uni.ppp.plogocontrol;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.larswerkman.holocolorpicker.ColorPicker;
 
@@ -21,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements ColorPicker.OnCol
     }
 
     public void onSend(View view) {
-        logo.saveConfig();
+        this.logo.saveConfig();
     }
 
     @Override
