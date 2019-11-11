@@ -2,6 +2,8 @@
     <string name="app_name">P++ Logo Control</string>
     <string name="send_to_pi">Send To Pi</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="no_bluetooth_warning">Der Blutooth-Adapter wurde nicht gefunden.</string>
+    <string name="no_bluetooth_explanation">Wenn dein Gerät Bluetoothfähig ist melde dich bitte in der P++ Gruppe!</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
