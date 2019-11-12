@@ -1,5 +1,7 @@
 package uni.ppp.plogocontrol;
 
+import android.util.Log;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import java.util.List;
  */
 public class LogoModel {
 
+    private static String TAG = "LogoModel";
     private List<LogoConfig> configs;
 
     public LogoModel() {
@@ -16,6 +19,8 @@ public class LogoModel {
 
     public void addConfig(LogoConfig conf) {
         this.configs.add(conf);
+        Log.d(TAG, "Config added.");
+        Log.d(TAG, "New config length: " + configs.size());
     }
 
     public void clearConfigs() {
@@ -28,6 +33,10 @@ public class LogoModel {
 
     @Override
     public String toString() {
-        return "Hallo Welt!";
+        StringBuffer sb = new StringBuffer();
+        for (LogoConfig conf: this.configs) {
+            sb.append(conf.toString());
+        }
+        return sb.toString();
     }
 }

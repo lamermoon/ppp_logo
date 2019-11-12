@@ -1,38 +1,39 @@
 package uni.ppp.plogocontrol;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.larswerkman.holocolorpicker.ColorPicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * The app's main activity
  */
-public class MainActivity extends AppCompatActivity implements ColorPicker.OnColorChangedListener {
+public class MainActivity extends AppCompatActivity {
 
     private final static String TAG = "MainActivity";
 
     private LogoController logo;
 
-    /**
-     * Callback function that is executed when the color of the color wheel changes
-     * @param color
-     */
-    public void onColorChanged(int color) {
-        LogoColor c = new LogoColor();
-        c.setARGB(color);
-    }
 
     /**
      * Callback function to be executed when the button for saving the config to the logo device is pressed
      * @param view the view that triggered this call
      */
     public void onSend(View view) {
-        this.logo.saveConfig();
+        this.logo.sendConfigToLogoDevice();
+    }
+
+    /**
+     * Callback function to be executed when the button for adding a new config is pressed
+     * @param view the view that triggered this call
+     */
+    public void onNewConfig(View view) {
+        Intent intent = new Intent(this, AddConfigActivity.class);
+        startActivity(intent);
     }
 
     /**

@@ -1,0 +1,129 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/add_config_type_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/add_config_type_label_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/add_config_type_dropdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:spinnerMode="dropdown"
+                app:layout_constraintStart_toEndOf="@+id/add_config_type_label"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/add_config_duration_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/add_config_duration_label_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_config_type_dropdown" />
+
+            <EditText
+                android:id="@+id/add_config_duration_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/add_config_duration_label_hint"
+                android:inputType="numberDecimal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_config_duration_label" />
+
+            <TextView
+                android:id="@+id/add_config_color_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/add_config_color_label_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_config_duration_input" />
+
+            <com.larswerkman.holocolorpicker.ColorPicker
+                android:id="@+id/picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_config_color_label" />
+
+            <com.larswerkman.holocolorpicker.SVBar
+                android:id="@+id/svbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/picker"
+                app:layout_constraintStart_toStartOf="@+id/picker"
+                app:layout_constraintTop_toBottomOf="@+id/picker" />
+
+            <com.larswerkman.holocolorpicker.SaturationBar
+                android:id="@+id/saturationbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/svbar"
+                app:layout_constraintStart_toStartOf="@+id/svbar"
+                app:layout_constraintTop_toBottomOf="@+id/svbar" />
+
+            <com.larswerkman.holocolorpicker.ValueBar
+                android:id="@+id/valuebar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/saturationbar"
+                app:layout_constraintStart_toStartOf="@+id/saturationbar"
+                app:layout_constraintTop_toBottomOf="@+id/saturationbar" />
+
+            <Button
+                android:id="@+id/add_config_savebutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:onClick="onSaveConfig"
+                android:text="@string/add_config_savebutton_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/valuebar" />
+
+            <TextView
+                android:id="@+id/add_config_duration_unit_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/add_config_duration_unit_label_text"
+                app:layout_constraintBottom_toBottomOf="@+id/add_config_duration_input"
+                app:layout_constraintStart_toEndOf="@+id/add_config_duration_input"
+                app:layout_constraintTop_toTopOf="@+id/add_config_duration_input" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    v
+</LinearLayout>

@@ -128,4 +128,9 @@ class LogoColor {
     int getARGB() {
         return (this.a << aoff) | this.getRGB();
     }
+
+    @Override
+    public String toString() {
+        return Integer.toString(getARGB());
+    }
 }

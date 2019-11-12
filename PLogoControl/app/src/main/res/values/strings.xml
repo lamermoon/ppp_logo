@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">P++ Logo Control</string>
-    <string name="send_to_pi">Send To Pi</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="no_bluetooth_warning">Der Blutooth-Adapter wurde nicht gefunden.</string>
-    <string name="no_bluetooth_explanation">Wenn dein Gerät Bluetoothfähig ist melde dich bitte in der P++ Gruppe!</string>
+    <string name="no_bluetooth_explanation">Wenn dein Gerät bluetoothfähig ist, melde dich bitte in der P++ Gruppe!</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -95,4 +94,27 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="longer_text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</string>
+    <string name="title_activity_add_config">Add Config</string>
+    <string name="button_text_add_config">Add Config</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="add_config_type_label_text">Type</string>
+    <string name="add_config_duration_label_text">Duration</string>
+    <string name="add_config_duration_label_hint">1000</string>
+    <string name="add_config_color_label_text">Color</string>
+    <string name="add_config_savebutton_text">Add Config</string>
+    <string name="add_config_duration_unit_label_text">ms</string>
 </resources>
