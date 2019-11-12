@@ -3,27 +3,30 @@ package uni.ppp.plogocontrol;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * This class represents the config model.
+ */
 public class LogoModel {
 
-    private List<LogoConfig> confs;
+    private List<LogoConfig> configs;
 
     public LogoModel() {
-
-        confs = new LinkedList<>();
+        configs = new LinkedList<>();
     }
 
-    public void addConf(LogoConfig conf) {
-        this.confs.add(conf);
+    public void addConfig(LogoConfig conf) {
+        this.configs.add(conf);
     }
 
-    public void clearConfs() {
-        this.confs = new LinkedList<>();
+    public void clearConfigs() {
+        this.configs = new LinkedList<>();
     }
 
-    public List<LogoConfig> getConfs() {
-        return this.confs;
+    public List<LogoConfig> getConfigs() {
+        return this.configs;
     }
 
+    @Override
     public String toString() {
         return "Hallo Welt!";
     }

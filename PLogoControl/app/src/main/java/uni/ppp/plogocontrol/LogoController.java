@@ -1,38 +1,39 @@
 package uni.ppp.plogocontrol;
 
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothManager;
-import android.content.Context;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 
 import java.util.Set;
 
+/**
+ * This class represents the app controller.
+ * It manages the config and view.
+ */
 public class LogoController {
 
     private final static String TAG = "LogoController";
-    private BluetoothAdapter mBluetoothAdapter = null;
+    private BluetoothAdapter mBluetoothAdapter;
     private BluetoothDevice logo_rpi;
 
     private LogoModel model;
 
 
-    // Constructor
-    public LogoController(Context context) {
+    /**
+     * Constructor for a new LogoController object
+     *
+     * @param view the main activity view to show a possible warning about missing Bluetooth capabilities
+     */
+    public LogoController(MainActivity view) {
         this.model = new LogoModel();
-
-        BluetoothManager manager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
-        this.mBluetoothAdapter = manager.getAdapter();
+        this.mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         initBluetooth();
 
-        if(mBluetoothAdapter != null){
-            findRaspberry();
-        }else{
-            showWarningView(context);
+        if (mBluetoothAdapter != null){
+            findLogoDevice();
+        } else {
+            view.showWarningView();
         }
     }
 
@@ -43,17 +44,22 @@ public class LogoController {
             //case RANDOM: conf = new LogoConfigRandom(); break;
             default: conf = new LogoConfigStatic(); break;
         }
-        this.model.addConf(conf);
+        this.model.addConfig(conf);
     }
 
     public void onClearConfs() {
-        this.model.clearConfs();
+        this.model.clearConfigs();
     }
 
 
-
-    // Bluetooth stuff to send config to RPi
-    private void findRaspberry() {
+    /**
+     * Scans the paired Bluetooth devices for a device named "ppplogo".
+     *
+     * NOTE: The user has to pair the device manually for now. A later version of this method will scan for the logo device and automatically pair it, before continuing
+     *
+     * TODO: Automatically pair
+     */
+    private void findLogoDevice() {
         Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
         for (BluetoothDevice device : pairedDevices) {
             Log.d(TAG, "Paired device: " + device.getName() + "(" + device.getAddress() + ")");
@@ -67,41 +73,38 @@ public class LogoController {
         }
     }
 
+    /**
+     * Initiates Bluetooth
+     *
+     * TODO: Enable Bluetooth if it is disabled instead of just logging that it is disabled
+     */
     private void initBluetooth() {
         Log.d(TAG, "Checking Bluetooth...");
         if (mBluetoothAdapter == null) {
             Log.d(TAG, "Device does not support Bluetooth");
-            //verhindert Abstürtze bei nicht vorhandenem Bluetooth. Sonst nullpointer bei mBluetoothAdapter.isEnabled()
-            return;
-        } else {
-            Log.d(TAG, "Bluetooth supported");
-        }
-
-        if (!mBluetoothAdapter.isEnabled()) {
-            Log.d(TAG, "Bluetooth not enabled");
         }
         else {
-            Log.d(TAG, "Bluetooth enabled");
-        }
-    }
+            Log.d(TAG, "Bluetooth supported");
 
-    public boolean saveConfig() {
-        if (logo_rpi == null || !mBluetoothAdapter.isEnabled())
-            return false;
-        String config_str = "Hallo RPi!"; //model.toString();
-        new LogoConfigSaverThread(logo_rpi, config_str).start();
-        return true;
+            if (!mBluetoothAdapter.isEnabled()) {
+                Log.d(TAG, "Bluetooth not enabled");
+            }
+            else {
+                Log.d(TAG, "Bluetooth enabled");
+            }
+        }
     }
 
     /**
-     * Zeigt eine Warnung an sodass der User weiß wo das Problem liegt.
-     * MVC ist in Android leider nicht gut voneinander abgegrenzt, deswegen kann man dies nicht wirklich gut anders lösen.
-     * Wer (bessere!) Alternativen hat kann dies gerne umsetzen.
-     * @param context
+     * Sends the config to the logo and enables it.
+     *
+     * @return <code>true</code> if save was successful and <code>false</code> otherwise
      */
-    private void showWarningView(Context context){
-        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.activity_main_no_bluetooth, null);
-        ((Activity)context).setContentView(view);
+    public boolean saveConfig() {
+        if (logo_rpi == null || !mBluetoothAdapter.isEnabled())
+            return false;
+        String config_str = model.toString();
+        new LogoConfigSaverThread(logo_rpi, config_str).start();
+        return true;
     }
 }

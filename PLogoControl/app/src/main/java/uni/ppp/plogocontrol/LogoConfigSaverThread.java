@@ -13,6 +13,10 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.util.Log;
 
+/**
+ * This class is used to send a config to the logo device.
+ * It runs as a separate thread to not slow the app.
+ */
 public class LogoConfigSaverThread extends Thread {
     private final static String TAG = "LogoConfigSaverThread";
     private final static String MY_UUID = "94f39d29-7d6d-437d-973b-fba39e49d4ee";
@@ -20,6 +24,12 @@ public class LogoConfigSaverThread extends Thread {
     private String mMessage;
 
 
+    /**
+     * Constructs a new LogoConfigSaverThread object to send the config to the logo device
+     *
+     * @param device the device to send the config to
+     * @param message the config to send
+     */
     public LogoConfigSaverThread(BluetoothDevice device, String message) {
         Log.d(TAG,"Trying to send message...");
         this.mMessage = message;
@@ -34,6 +44,12 @@ public class LogoConfigSaverThread extends Thread {
         }
     }
 
+    /**
+     * Sends the config to a given socket.
+     *
+     * @param socket the socket to send the config to
+     * @throws IOException if an error occurs during writing or reading the socket streams
+     */
     private void manageConnectedSocket(BluetoothSocket socket) throws IOException {
         OutputStream os = socket.getOutputStream();
         PrintStream sender = new PrintStream(os);
@@ -45,6 +61,11 @@ public class LogoConfigSaverThread extends Thread {
         Log.d(TAG,"Received: " + reader.readLine());
     }
 
+    /**
+     * The thread's run function.
+     *
+     * It cancels Bluetooth discovery before trying to connect to the logo device and send the config.
+     */
     public void run() {
         BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
         for (int i = 0; i < 5; ++i) {
