@@ -22,6 +22,8 @@ public class LogoController {
 
     // Constructor
     public LogoController(Context context) {
+        this.model = new LogoModel();
+
         BluetoothManager manager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
         this.mBluetoothAdapter = manager.getAdapter();
 
@@ -54,6 +56,7 @@ public class LogoController {
     private void findRaspberry() {
         Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
         for (BluetoothDevice device : pairedDevices) {
+            Log.d(TAG, "Paired device: " + device.getName() + "(" + device.getAddress() + ")");
             if (device.getName().equals("ppplogo")) {
                 this.logo_rpi = device;
             }

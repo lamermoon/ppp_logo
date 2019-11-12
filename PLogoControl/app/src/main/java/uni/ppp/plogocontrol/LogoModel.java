@@ -25,7 +25,6 @@ public class LogoModel {
     }
 
     public String toString() {
-
-        return "";
+        return "Hallo Welt!";
     }
 }
