@@ -14,7 +14,7 @@ import java.util.Set;
  * This class represents the app controller.
  * It manages the config and view.
  */
-public class LogoController implements ColorPicker.OnColorChangedListener, AdapterView.OnItemSelectedListener {
+public class LogoController implements ColorPicker.OnColorSelectedListener, AdapterView.OnItemSelectedListener {
 
     private final static String TAG = "LogoController";
     private static BluetoothAdapter mBluetoothAdapter = null;
@@ -106,10 +106,10 @@ public class LogoController implements ColorPicker.OnColorChangedListener, Adapt
      * @return <code>true</code> if save was successful and <code>false</code> otherwise
      */
     public boolean sendConfigToLogoDevice() {
-        if (logo_device == null || !mBluetoothAdapter.isEnabled())
-            return false;
         String config_str = model.toString();
         Log.d(TAG, "Config length: " + config_str.length() + " Config: " + config_str);
+        if (logo_device == null || !mBluetoothAdapter.isEnabled())
+            return false;
         new LogoConfigSaverThread(logo_device, config_str).start();
         return true;
     }
@@ -131,11 +131,6 @@ public class LogoController implements ColorPicker.OnColorChangedListener, Adapt
     }
 
     @Override
-    public void onColorChanged(int color) {
-        tmp_config.setColor(color);
-    }
-
-    @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         tmp_config.setType(LogoConfigType.valueOf((String)parent.getItemAtPosition(position)));
     }
@@ -143,5 +138,11 @@ public class LogoController implements ColorPicker.OnColorChangedListener, Adapt
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    public void onColorSelected(int color) {
+        tmp_config.setColor(color);
+        Log.d(TAG, "Color set in config.");
     }
 }

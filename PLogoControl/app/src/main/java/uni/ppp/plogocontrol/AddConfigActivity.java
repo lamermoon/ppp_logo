@@ -50,6 +50,7 @@ public class AddConfigActivity extends AppCompatActivity {
         picker.addValueBar(valueBar);
         picker.setOldCenterColor(picker.getColor());
         picker.setShowOldCenterColor(true);
+        picker.setOnColorSelectedListener(this.logo);
     }
 
     public void onSaveConfig(View view) {
