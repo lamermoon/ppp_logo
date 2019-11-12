@@ -55,8 +55,10 @@ public class LogoController {
     /**
      * Scans the paired Bluetooth devices for a device named "ppplogo".
      *
-     * NOTE: The user has to pair the device manually for now. A later version of this method will scan for the logo device and automatically pair it, before continuing
+     * NOTE: The user has to pair the device manually for now.
+     * A later version of this method will scan for the logo device and automatically pair it, before continuing
      *
+     * TODO: Remove hardcoding of "ppplogo" device name and let the user choose
      * TODO: Automatically pair
      */
     private void findLogoDevice() {
